@@ -23,7 +23,7 @@ const sceneConfig = {
     },
     show: {
         grid: true,
-        bound: false,
+        bound: true,
         shBands: 3
     },
     controls: {
