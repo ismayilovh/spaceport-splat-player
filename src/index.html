@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Splat Viewer</title>
+
+    <meta charset="utf-8" />
+    <base href="__BASE_HREF__">
+    <link rel="manifest" href="./manifest.json">
+    <link rel="stylesheet" href="./index.css">
+    <link rel="shortcut icon" href="#">
+    <!-- <meta name="description" content="SuperSplat is an advanced browser-based editor for manipulating and optimizing 3D Gaussian Splats. It is open source and engine agnostic." /> -->
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+     <style>
+            /* body { margin: 0; overflow: hidden; }
+            #controls {
+                position: fixed;
+                bottom: 10px;
+                left: 10px;
+                display: flex;
+                gap: 10px;
+                z-index: 1000;
+            }
+            #controls button {
+                padding: 8px 16px;
+                font-size: 16px;
+                cursor: pointer;
+            } */
+    </style>
+    <script src="jszip.js"></script>
+
+</head>
+<body>
+    <!-- <div id="app"></div> -->
+    <!-- <div id="controls">
+        <button id="playBtn">Play</button>
+        <button id="pauseBtn">Pause</button>
+    </div> -->
+    <!-- <script type="module">
+    // Configuration
+    // const METADATA_URL = '/metadata';
+    
+    // // State
+    // let segmentIndex = [];
+    // let totalFrames = 0;
+    // let totalSegments = 0;
+    // let framesPerSegment = 0;
+    // let fps = 30;
+    // let cdnBaseUrl = '';
+    
+    // Load metadata
+    // async function loadMetadata() {
+    //     try {
+    //         console.log('📡 Loading metadata...', 'info');
+    //         const response = await fetch(METADATA_URL);
+            
+    //         if (!response.ok) {
+    //             throw new Error(`HTTP ${response.status}`);
+    //         }
+            
+    //         const data = await response.json();
+            
+    //         segmentIndex = data.segments;
+    //         totalFrames = data.totalFrames;
+    //         totalSegments = data.totalSegments;
+    //         framesPerSegment = data.framesPerSegment;
+    //         fps = data.fps;
+    //         cdnBaseUrl = data.cdnBaseUrl;
+            
+    //         console.log('✅ Metadata loaded:', {
+    //             totalFrames,
+    //             totalSegments,
+    //             framesPerSegment,
+    //             fps,
+    //             cdnBaseUrl
+    //         });
+            
+    //         return data;
+    //     } catch (error) {
+    //         console.error(`❌ Failed: ${error.message}`);
+    //         // setStatus('error', 'Error');
+    //         throw error;
+    //     }
+    // }
+    
+    // Initialize on page load
+    // loadMetadata().then(() => {
+    //     console.log('🎬 Ready to play');
+    // }).catch(err => {
+    //     console.error('Failed to initialize:', err);
+    // });
+  </script> -->
+    <script type="module" src="/index.js"></script>
+</body>
+</html>
