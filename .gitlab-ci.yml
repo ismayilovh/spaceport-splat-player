@@ -29,7 +29,6 @@ build_image:
 deploy_to_server:
   stage: deploy
   before_script:
-    - apk add openssh-client
     - mkdir -p ~/.ssh
     - echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
     - chmod 600 ~/.ssh/id_rsa
