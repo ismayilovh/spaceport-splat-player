@@ -23,6 +23,8 @@ build_image:
     - if: $CI_COMMIT_BRANCH
       exists:
         - Dockerfile
+  tags:
+    - spaceport
 
 deploy_to_server:
   stage: deploy
@@ -39,3 +41,5 @@ deploy_to_server:
         sudo docker rm splat-viewer || true &&
         sudo docker run -d -p 8081:8081 --name splat-viewer $CI_REGISTRY_IMAGE:latest
       "
+  tags:
+    - spaceport
