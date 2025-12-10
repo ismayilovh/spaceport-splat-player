@@ -354,6 +354,7 @@ async function registerCreateVideoPlayer( events: Events,
   const manifest: Manifest = await response.json();
   const cdnUrl = manifest.cdnUrl
 //   const  cdnUrl = `${cdnUrl}`;
+  events.fire('startSpinner');
 
   const downloader = new SegmentDownloader(cdnUrl, manifest);
   let cnt= 0
@@ -408,6 +409,8 @@ async function registerCreateVideoPlayer( events: Events,
 
         if  (cnt == 0) {
             events.fire('timeline.frame2', 0);
+            events.fire('stopSpinner');
+
         }
         cnt++;
 
