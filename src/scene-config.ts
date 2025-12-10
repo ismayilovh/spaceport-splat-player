@@ -16,14 +16,14 @@ const sceneConfig = {
         multisample: false,
         fov: 65,
         exposure: 1.0,
-        toneMapping: 'linear',
+        toneMapping: 'Neutral',
         debugRender: '',
         overlay: false,
         highPrecision: true
     },
     show: {
         grid: true,
-        bound: true,
+        bound: false,
         shBands: 3
     },
     controls: {
