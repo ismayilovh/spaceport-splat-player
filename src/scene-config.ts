@@ -28,8 +28,8 @@ const sceneConfig = {
     },
     controls: {
         dampingFactor: 0.2,
-        minPolarAngle: 0,
-        maxPolarAngle: Math.PI,
+        minPolarAngle: Math.PI/4,
+        maxPolarAngle: Math.PI/1.8,
         minZoom: 1e-6,
         maxZoom: 10.0,
         initialAzim: -45,
