@@ -16,7 +16,7 @@ const sceneConfig = {
         multisample: false,
         fov: 65,
         exposure: 1.0,
-        toneMapping: 'Neutral',
+        toneMapping: 'neutral',
         debugRender: '',
         overlay: false,
         highPrecision: true
