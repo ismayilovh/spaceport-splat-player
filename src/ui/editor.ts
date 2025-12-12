@@ -1,7 +1,7 @@
 import { Container, Label } from '@playcanvas/pcui';
 import { Mat4, path, Vec3 } from 'playcanvas';
 
-import { DataPanel } from './data-panel';
+// import { DataPanel } from './data-panel';
 import { Events } from '../events';
 import { BottomToolbar } from './bottom-toolbar';
 import { ColorPanel } from './color-panel';
@@ -10,7 +10,7 @@ import { ImageSettingsDialog } from './image-settings-dialog';
 import { localize, localizeInit } from './localization';
 import { Menu } from './menu';
 import { ModeToggle } from './mode-toggle';
-import logo from './playcanvas-logo.png';
+import logo from './spaceport-logo.png';
 import { Popup, ShowOptions } from './popup';
 import { Progress } from './progress';
 import { PublishSettingsDialog } from './publish-settings-dialog';
@@ -151,11 +151,11 @@ class EditorUI {
         });
 
         const timelinePanel = new TimelinePanel(events, tooltips);
-        const dataPanel = new DataPanel(events);
+        // const dataPanel = new DataPanel(events);
 
         mainContainer.append(canvasContainer);
         mainContainer.append(timelinePanel);
-        mainContainer.append(dataPanel);
+        // mainContainer.append(dataPanel);
 
         editorContainer.append(mainContainer);
 

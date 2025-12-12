@@ -293,7 +293,7 @@ function startFileServer(): void {
       const requestOrigin = `${protocol}://${host}`;
 
       const computedBase = USE_CDN ? CDN_BASE_URL! : requestOrigin;
-      // console.log("base",computedBase )
+      console.log("base",computedBase )
 
       res.writeHead(200, { 'Content-Type': 'application/json' });
       res.end(

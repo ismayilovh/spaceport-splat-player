@@ -24,6 +24,6 @@ To initialize a local development environment for SuperSplat, ensure you have [N
 
 4. Navigate to `http://localhost:8081`
 
-When changes to the source are detected, Splat Viewer is rebuilt automatically. Simply refresh your browser to see your changes.
+When changes to the source are detected, Splat Player is rebuilt automatically. Simply refresh your browser to see your changes.
 
 
