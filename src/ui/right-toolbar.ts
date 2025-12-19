@@ -2,6 +2,7 @@ import { Button, Container, Element, Label } from '@playcanvas/pcui';
 
 import { Events } from '../events';
 import { localize } from './localization';
+import arViewSvg from './svg/ar-view.svg';
 import cameraFrameSelectionSvg from './svg/camera-frame-selection.svg';
 import cameraResetSvg from './svg/camera-reset.svg';
 import centersSvg from './svg/centers.svg';
@@ -59,6 +60,12 @@ class RightToolbar extends Container {
             icon: 'E283'
         });
 
+        const arButton = new Button({
+            id: 'right-toolbar-ar',
+            class: 'right-toolbar-toggle',
+            hidden: true  // Hidden by default, shown when AR is available
+        });
+
         // const centersDom = createSvg(centersSvg);
         // const ringsDom = createSvg(ringsSvg);
         // ringsDom.style.display = 'none';
@@ -69,6 +76,7 @@ class RightToolbar extends Container {
         cameraFrameSelection.dom.appendChild(createSvg(cameraFrameSelectionSvg));
         cameraReset.dom.appendChild(createSvg(cameraResetSvg));
         colorPanel.dom.appendChild(createSvg(colorPanelSvg));
+        arButton.dom.appendChild(createSvg(arViewSvg));
 
         // this.append(ringsModeToggle);
         this.append(showHideSplats);
@@ -78,6 +86,7 @@ class RightToolbar extends Container {
         this.append(colorPanel);
         this.append(new Element({ class: 'right-toolbar-separator' }));
         this.append(options);
+        this.append(arButton);
 
         tooltips.register(ringsModeToggle, localize('tooltip.right-toolbar.splat-mode'), 'left');
         tooltips.register(showHideSplats, localize('tooltip.right-toolbar.show-hide'), 'left');
@@ -85,6 +94,7 @@ class RightToolbar extends Container {
         tooltips.register(cameraReset, localize('tooltip.right-toolbar.reset-camera'), 'left');
         tooltips.register(colorPanel, localize('tooltip.right-toolbar.colors'), 'left');
         tooltips.register(options, localize('tooltip.right-toolbar.view-options'), 'left');
+        tooltips.register(arButton, 'Toggle AR View', 'left');
 
         // add event handlers
 
@@ -97,6 +107,7 @@ class RightToolbar extends Container {
         cameraReset.on('click', () => events.fire('camera.reset'));
         colorPanel.on('click', () => events.fire('colorPanel.toggleVisible'));
         options.on('click', () => events.fire('viewPanel.toggleVisible'));
+        arButton.on('click', () => events.fire('ar.toggle'));
 
         // events.on('camera.mode', (mode: string) => {
         //     ringsModeToggle.class[mode === 'rings' ? 'add' : 'remove']('active');
@@ -114,6 +125,15 @@ class RightToolbar extends Container {
 
         events.on('viewPanel.visible', (visible: boolean) => {
             options.class[visible ? 'add' : 'remove']('active');
+        });
+
+        // AR button visibility and state
+        events.on('ar.available', (available: boolean) => {
+            arButton.hidden = !available;
+        });
+
+        events.on('ar.active', (active: boolean) => {
+            arButton.class[active ? 'add' : 'remove']('active');
         });
     }
 }

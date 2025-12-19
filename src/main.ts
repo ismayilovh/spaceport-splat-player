@@ -33,6 +33,7 @@ import { EditorUI } from './ui/editor';
 import { localizeInit } from './ui/localization';
 // import { Container } from '@playcanvas/pcui';
 import { registerCreateVideoPlayer } from './handle-stream';
+import { initAR } from './ar';
 
 declare global {
     interface LaunchParams {
@@ -149,7 +150,7 @@ const main = async () => {
         antialias: false,
         depth: false,
         stencil: false,
-        xrCompatible: false,
+        xrCompatible: true,
         powerPreference: 'high-performance'
     });
 
@@ -311,6 +312,9 @@ const main = async () => {
             }
         });
     }
+
+    // initialize AR
+    initAR(scene, events);
 };
 
 export { main };
