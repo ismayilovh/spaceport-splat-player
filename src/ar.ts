@@ -5,6 +5,9 @@ import { Events } from './events';
 let sceneRef: Scene | null = null;
 let eventsRef: Events | null = null;
 
+let isAutoRender: boolean = false;
+let isGridVisible: boolean = true;
+
 export function initAR(scene: Scene, events: Events): void {
     sceneRef = scene;
     eventsRef = events;
@@ -26,10 +29,16 @@ export function initAR(scene: Scene, events: Events): void {
 
     // listen for XR session start/end
     pc.app.xr.on('start', () => {
+        if (sceneRef) {
+            configureForAR(sceneRef);
+        }
         eventsRef?.fire('ar.active', true);
     });
 
     pc.app.xr.on('end', () => {
+        if (sceneRef) {
+            restoreFromAR(sceneRef);
+        }
         eventsRef?.fire('ar.active', false);
     });
 
@@ -37,6 +46,28 @@ export function initAR(scene: Scene, events: Events): void {
     pc.app.xr.on('error', (error: Error) => {
         console.error("XR error:", error.message);
     });
+}
+
+function configureForAR(scene: Scene): void {
+    const app = scene.app;
+
+    isAutoRender = app.autoRender;
+    isGridVisible = scene.grid.visible;
+
+    // scene is changing in AR mode: render every frame, hide grid
+    app.autoRender = true;
+    scene.grid.visible = false;
+
+    console.log("AR mode configured. XR session started.");
+}
+
+function restoreFromAR(scene: Scene): void {
+    const app = scene.app;
+
+    app.autoRender = isAutoRender;
+    scene.grid.visible = isGridVisible;
+
+    console.log("AR mode restored. XR session ended.");
 }
 
 export function startARSession(): void {
@@ -54,13 +85,21 @@ export function startARSession(): void {
         return;
     }
 
-    const camera = sceneRef.camera.entity.camera;
-    if (!camera) {
+    const camera = sceneRef.camera;
+    const cameraComponent = camera.entity.camera;
+    if (!cameraComponent) {
         console.error("Camera component not found");
         return;
     }
 
-    pc.app.xr.start(camera, pc.XRTYPE_AR, pc.XRSPACE_LOCALFLOOR);
+    // camera is too far at the start. need to focus it on the model.
+    camera.focus();
+    eventsRef?.fire('camera.setFov', 120);
+
+    // delay session for camera focus process
+    setTimeout(() => {
+        pc.app.xr.start(cameraComponent, pc.XRTYPE_AR, pc.XRSPACE_LOCALFLOOR);
+    }, 500);
 }
 
 export function endARSession(): void {
